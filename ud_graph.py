@@ -139,7 +139,7 @@ class UndirectedGraph:
                 whatever_inv = (z,k)
                 if whatever_inv not in list:
                     list.append(whatever)
-        print(list)
+        return list
 
 
 
