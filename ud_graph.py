@@ -124,7 +124,7 @@ class UndirectedGraph:
 
         vertices = self.adj_list.keys()
         list_of_vertices = list(vertices)
-        print(list_of_vertices)
+        return list_of_vertices
 
 
 
@@ -132,9 +132,17 @@ class UndirectedGraph:
         """
         Return list of edges in the graph (any order)
         """
-        #
-        # edges = self.adj_list.values()
-        
+        list = []
+        for k,v in self.adj_list.items():
+            for z in v:
+                whatever = (k,z)
+                whatever_inv = (z,k)
+                if whatever_inv not in list:
+                    list.append(whatever)
+        print(list)
+
+
+
 
     def is_valid_path(self, path: []) -> bool:
         """
