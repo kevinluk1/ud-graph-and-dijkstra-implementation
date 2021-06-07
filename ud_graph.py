@@ -2,6 +2,7 @@
 # Author: 
 # Assignment: 
 # Description:
+from collections import deque
 
 
 class UndirectedGraph:
@@ -168,18 +169,39 @@ class UndirectedGraph:
 
             if vertex in self.adj_list.keys() and len(path) == 1:
                 return True
-
         return self.is_valid_path_helper(path, 0)
 
 
+    def rec_dfs(self, v_start, v_end, visited_vertices, stack):
+        if len(stack) == 0:
+            return
+        if v_start == v_end:
+            return
+        if len(stack) != 0:
+            v = stack.popleft()
+            if v not in visited_vertices:
+                visited_vertices.append(v)
+                self.adj_list[v].sort()
+                self.adj_list[v].reverse()
+                for i in self.adj_list[v]:
+                    if i not in visited_vertices:
+                        stack.appendleft(i)
 
-
+            self.rec_dfs(v_start, v_end, visited_vertices, stack)
 
     def dfs(self, v_start, v_end=None) -> []:
         """
         Return list of vertices visited during DFS search
         Vertices are picked in alphabetical order
         """
+        visited_vertices = []
+        stack = deque()
+        stack.append(v_start)
+        self.rec_dfs(v_start, v_end, visited_vertices, stack)
+        return(visited_vertices)
+
+
+
        
 
     def bfs(self, v_start, v_end=None) -> []:
@@ -242,13 +264,13 @@ if __name__ == '__main__':
     # print(g.get_edges(), g.get_vertices(), sep='\n')
     #
     #
-    print("\nPDF - method is_valid_path() example 1")
-    print("--------------------------------------")
-    g = UndirectedGraph(['AB', 'AC', 'BC', 'BD', 'CD', 'CE', 'DE'])
-    test_cases = ['ABC', 'ADE', 'ECABDCBE', 'ACDECB', '', 'D', 'Z']
-    # test_cases = ['ABC', 'ADE', 'ECABDCBE', 'ACDECB', '']
-    for path in test_cases:
-        print(list(path), g.is_valid_path(list(path)))
+    # print("\nPDF - method is_valid_path() example 1")
+    # print("--------------------------------------")
+    # g = UndirectedGraph(['AB', 'AC', 'BC', 'BD', 'CD', 'CE', 'DE'])
+    # test_cases = ['ABC', 'ADE', 'ECABDCBE', 'ACDECB', '', 'D', 'Z']
+    # # test_cases = ['ABC', 'ADE', 'ECABDCBE', 'ACDECB', '']
+    # for path in test_cases:
+    #     print(list(path), g.is_valid_path(list(path)))
     #
     #
     # print("\nPDF - method dfs() and bfs() example 1")
@@ -263,6 +285,20 @@ if __name__ == '__main__':
     #     v1, v2 = test_cases[i], test_cases[-1 - i]
     #     print(f'{v1}-{v2} DFS:{g.dfs(v1, v2)} BFS:{g.bfs(v1, v2)}')
     #
+
+    print("\nPDF - method dfs() and bfs() example 1")
+    print("--------------------------------------")
+    edges = ['AE', 'AC', 'BE', 'CE', 'CD', 'CB', 'BD', 'ED', 'BH', 'QG', 'FG']
+    g = UndirectedGraph(edges)
+    test_cases = 'ABCDEGH'
+    for case in test_cases:
+        print(f'{case} DFS:{g.dfs(case)}')
+    # print('-----')
+    # for i in range(1, len(test_cases)):
+    #     v1, v2 = test_cases[i], test_cases[-1 - i]
+    #     print(f'{v1}-{v2} DFS:{g.dfs(v1, v2)} BFS:{g.bfs(v1, v2)}')
+
+
     #
     # print("\nPDF - method count_connected_components() example 1")
     # print("---------------------------------------------------")
