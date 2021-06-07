@@ -214,14 +214,43 @@ class UndirectedGraph:
 
 
 
-       
+    def rec_bfs(self, v_start, v_end, visited_vertices, queue):
+        if len(queue) == 0:
+            return
+
+
+        if len(queue) != 0:
+            v = queue.popleft()
+            if v == v_end:
+                visited_vertices.append(v)
+                return
+
+
+            if v not in visited_vertices:
+                visited_vertices.append(v)
+                self.adj_list[v].sort()
+
+                for i in self.adj_list[v]:
+                    if i not in visited_vertices:
+                        queue.append(i)
+
+            self.rec_bfs(v_start, v_end, visited_vertices, queue)
 
     def bfs(self, v_start, v_end=None) -> []:
         """
         Return list of vertices visited during BFS search
         Vertices are picked in alphabetical order
         """
-        
+        visited_vertices = []
+        queue = deque()
+        queue.append(v_start)
+
+        if v_start not in self.adj_list.keys():
+            return []
+
+        self.rec_bfs(v_start, v_end, visited_vertices, queue)
+
+        return (visited_vertices)
 
     def count_connected_components(self):
         """
