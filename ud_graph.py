@@ -187,8 +187,7 @@ class UndirectedGraph:
 
             if v not in visited_vertices:
                 visited_vertices.append(v)
-                self.adj_list[v].sort()
-                self.adj_list[v].reverse()
+                self.adj_list[v].sort(reverse=True)
 
                 for i in self.adj_list[v]:
                     if i not in visited_vertices:
