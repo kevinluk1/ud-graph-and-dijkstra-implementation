@@ -173,18 +173,23 @@ class UndirectedGraph:
 
 
     def rec_dfs(self, v_start, v_end, visited_vertices, stack):
+
         if len(stack) == 0:
             return
+
 
         if len(stack) != 0:
             v = stack.popleft()
             if v == v_end:
                 visited_vertices.append(v)
                 return
+
+
             if v not in visited_vertices:
                 visited_vertices.append(v)
                 self.adj_list[v].sort()
                 self.adj_list[v].reverse()
+
                 for i in self.adj_list[v]:
                     if i not in visited_vertices:
                         stack.appendleft(i)
@@ -196,10 +201,16 @@ class UndirectedGraph:
         Return list of vertices visited during DFS search
         Vertices are picked in alphabetical order
         """
+
         visited_vertices = []
         stack = deque()
         stack.append(v_start)
+
+        if v_start not in self.adj_list.keys():
+            return []
+
         self.rec_dfs(v_start, v_end, visited_vertices, stack)
+
         return(visited_vertices)
 
 
