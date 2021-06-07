@@ -175,10 +175,12 @@ class UndirectedGraph:
     def rec_dfs(self, v_start, v_end, visited_vertices, stack):
         if len(stack) == 0:
             return
-        if v_start == v_end:
-            return
+
         if len(stack) != 0:
             v = stack.popleft()
+            if v == v_end:
+                visited_vertices.append(v)
+                return
             if v not in visited_vertices:
                 visited_vertices.append(v)
                 self.adj_list[v].sort()
@@ -273,26 +275,26 @@ if __name__ == '__main__':
     #     print(list(path), g.is_valid_path(list(path)))
     #
     #
-    # print("\nPDF - method dfs() and bfs() example 1")
-    # print("--------------------------------------")
-    # edges = ['AE', 'AC', 'BE', 'CE', 'CD', 'CB', 'BD', 'ED', 'BH', 'QG', 'FG']
-    # g = UndirectedGraph(edges)
-    # test_cases = 'ABCDEGH'
-    # for case in test_cases:
-    #     print(f'{case} DFS:{g.dfs(case)} BFS:{g.bfs(case)}')
-    # print('-----')
-    # for i in range(1, len(test_cases)):
-    #     v1, v2 = test_cases[i], test_cases[-1 - i]
-    #     print(f'{v1}-{v2} DFS:{g.dfs(v1, v2)} BFS:{g.bfs(v1, v2)}')
-    #
-
     print("\nPDF - method dfs() and bfs() example 1")
     print("--------------------------------------")
     edges = ['AE', 'AC', 'BE', 'CE', 'CD', 'CB', 'BD', 'ED', 'BH', 'QG', 'FG']
     g = UndirectedGraph(edges)
     test_cases = 'ABCDEGH'
     for case in test_cases:
-        print(f'{case} DFS:{g.dfs(case)}')
+        print(f'{case} DFS:{g.dfs(case)} BFS:{g.bfs(case)}')
+    print('-----')
+    for i in range(1, len(test_cases)):
+        v1, v2 = test_cases[i], test_cases[-1 - i]
+        print(f'{v1}-{v2} DFS:{g.dfs(v1, v2)} BFS:{g.bfs(v1, v2)}')
+    #
+    #
+    # print("\nPDF - method dfs() and bfs() example 1")
+    # print("--------------------------------------")
+    # edges = ['AE', 'AC', 'BE', 'CE', 'CD', 'CB', 'BD', 'ED', 'BH', 'QG', 'FG']
+    # g = UndirectedGraph(edges)
+    # test_cases = 'ABCDEGH'
+    # for case in test_cases:
+    #     print(f'{case} DFS:{g.dfs(case)}')
     # print('-----')
     # for i in range(1, len(test_cases)):
     #     v1, v2 = test_cases[i], test_cases[-1 - i]
