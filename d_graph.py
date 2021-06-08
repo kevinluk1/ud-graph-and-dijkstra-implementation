@@ -5,6 +5,7 @@
 from collections import deque
 import heapq
 
+
 class DirectedGraph:
     """
     Class to implement directed weighted graph
@@ -163,11 +164,9 @@ class DirectedGraph:
         stack = deque()
         stack.append(v_start)
 
-
         g = self.get_vertices()
         if v_start not in g:
             return []
-
 
         self.rec_dfs(v_start, v_end, visited_vertices, stack)
         return visited_vertices
@@ -187,9 +186,8 @@ class DirectedGraph:
             if v not in visited_vertices:
                 visited_vertices.append(v)
 
-
-                for i in range(len(self.adj_matrix[v]) -1, -1, -1):  # append larger to smaller numbers
-                    if self.adj_matrix[v][i] !=0:
+                for i in range(len(self.adj_matrix[v]) - 1, -1, -1):  # append larger to smaller numbers
+                    if self.adj_matrix[v][i] != 0:
                         stack.appendleft(i)  # append left then pop left = LIFO
 
             self.rec_dfs(v_start, v_end, visited_vertices, stack)
@@ -225,7 +223,7 @@ class DirectedGraph:
             if v not in visited_vertices:
                 visited_vertices.append(v)
 
-                for i in range(len(self.adj_matrix[v])):  # append smaller to larger numbers
+                for i in range(len(self.adj_matrix[v]) - 1, -1, -1):  # append smaller to larger numbers
                     if self.adj_matrix[v][i] != 0:
                         queue.appendleft(i)  # append left + pop right = FIFO
 
@@ -241,7 +239,48 @@ class DirectedGraph:
         """
         TODO: Write this implementation
         """
-        pass
+        visited_vertices = dict()
+        priority_queue = []
+        priority_queue.append((0, src))
+        heapq.heapify(priority_queue)
+
+        if src < 0:
+            return None
+        if src > len(self.adj_matrix):
+            return None
+
+        self.rec_dijkstra(src, visited_vertices, priority_queue)
+
+        return_list = [float('inf') for i in range(self.v_count)]
+        for i in visited_vertices.keys():
+            return_list[i] = (visited_vertices[i])
+        return return_list
+
+    def rec_dijkstra(self, src, visited_vertices, priority_queue):
+
+        if len(priority_queue) == 0:
+            return
+        if len(priority_queue) != 0:
+            z = heapq.heappop(priority_queue)
+            v = z[1]
+            d = z[0]
+
+            if v not in visited_vertices.keys():
+                visited_vertices[v] = d
+
+                for i in range(len(self.adj_matrix[v])):
+                    if self.adj_matrix[v][i] != 0:
+                        di = self.adj_matrix[v][i]
+                        total_d = di + d
+                        heapq.heappush(priority_queue, (total_d, i))
+
+            return self.rec_dijkstra(src, visited_vertices, priority_queue)
+
+            #
+            # if v not in visited_vertices:
+            #     visited_vertices[v] = self.adj_matrix[v][v]
+            #
+            #
 
 
 if __name__ == '__main__':
@@ -296,14 +335,13 @@ if __name__ == '__main__':
     # for path in test_cases:
     #     print(path, g.is_valid_path(path))
 
-
-    print("\nPDF - method dfs() and bfs() example 1")
-    print("--------------------------------------")
-    edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
-             (3, 1, 5), (2, 1, 23), (3, 2, 7)]
-    g = DirectedGraph(edges)
-    for start in range(5):
-        print(f'{start} DFS:{g.dfs(start)} BFS:{g.bfs(start)}')
+    # print("\nPDF - method dfs() and bfs() example 1")
+    # print("--------------------------------------")
+    # edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
+    #          (3, 1, 5), (2, 1, 23), (3, 2, 7)]
+    # g = DirectedGraph(edges)
+    # for start in range(5):
+    #     print(f'{start} DFS:{g.dfs(start)} BFS:{g.bfs(start)}')
     #
     #
     # print("\nPDF - method has_cycle() example 1")
@@ -324,14 +362,14 @@ if __name__ == '__main__':
     # print('\n', g)
     #
     #
-    # print("\nPDF - dijkstra() example 1")
-    # print("--------------------------")
-    # edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
-    #          (3, 1, 5), (2, 1, 23), (3, 2, 7)]
-    # g = DirectedGraph(edges)
-    # for i in range(5):
-    #     print(f'DIJKSTRA {i} {g.dijkstra(i)}')
-    # g.remove_edge(4, 3)
-    # print('\n', g)
-    # for i in range(5):
-    #     print(f'DIJKSTRA {i} {g.dijkstra(i)}')
+    print("\nPDF - dijkstra() example 1")
+    print("--------------------------")
+    edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
+             (3, 1, 5), (2, 1, 23), (3, 2, 7)]
+    g = DirectedGraph(edges)
+    for i in range(5):
+        print(f'DIJKSTRA {i} {g.dijkstra(i)}')
+    g.remove_edge(4, 3)
+    print('\n', g)
+    for i in range(5):
+        print(f'DIJKSTRA {i} {g.dijkstra(i)}')
