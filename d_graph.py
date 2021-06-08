@@ -84,10 +84,8 @@ class DirectedGraph:
         print("V COUNT ")
         print(self.v_count)
 
-        if src == dst:
-            return
 
-        if src > self.v_count - 1 or dst > self.v_count - 1:
+        if src <= (self.v_count - 1) or dst <= (self.v_count - 1):
             return
 
         self.adj_matrix[src][dst] = 0
