@@ -83,7 +83,7 @@ class DirectedGraph:
         """
         TODO: Write this implementation
         """
-        print(src,dst)
+        print(src, dst)
         if src > self.v_count - 1 or dst > self.v_count - 1:
             return
 
@@ -93,12 +93,10 @@ class DirectedGraph:
         if src == dst:
             return
 
-
         if self.adj_matrix[src][dst] == 0:
             return
         if self.adj_matrix[src][dst] != 0:
             self.adj_matrix[src][dst] = 0
-
 
     def get_vertices(self) -> []:
         """
@@ -113,12 +111,15 @@ class DirectedGraph:
         """
         TODO: Write this implementation
         """
-        # list = []
-        # for i in self.adj_matrix:
-        #     for x in i:
-        #         if x != 0:
-        #             list.append(x)
-        # return list
+
+        list = []
+        for row in range(len(self.adj_matrix)):
+            for col in range(len(self.adj_matrix[row])):
+                if self.adj_matrix[row][col] != 0:
+                    weight = self.adj_matrix[row][col]
+                    output = (row, col, weight)
+                    list.append(output)
+        return list
 
     def is_valid_path(self, path: []) -> bool:
         """
@@ -183,7 +184,6 @@ if __name__ == '__main__':
     for src, dst, weight in edges:
         g.add_edge(src, dst, weight)
     print(g)
-
 
     print("\nPDF - method get_edges() example 1")
     print("----------------------------------")
