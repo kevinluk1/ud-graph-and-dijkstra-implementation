@@ -88,6 +88,7 @@ class DirectedGraph:
             return
 
         self.adj_matrix[src][dst] = 0
+        print(locals())
 
 
     def get_vertices(self) -> []:
