@@ -168,19 +168,11 @@ class DirectedGraph:
         if v_start not in g:
             return []
 
-        # list = []
-        #
-        # for i in range(len(self.adj_matrix[1])):
-        #     if self.adj_matrix[1][i] !=0:
-        #         list.append(i)
-        # print(list)
 
-
-        temp = []
-        self.rec_dfs(v_start, v_end, visited_vertices, stack, temp)
+        self.rec_dfs(v_start, v_end, visited_vertices, stack)
         return visited_vertices
 
-    def rec_dfs(self, v_start, v_end, visited_vertices, stack, temp):
+    def rec_dfs(self, v_start, v_end, visited_vertices, stack):
 
         if len(stack) == 0:
             return
@@ -198,22 +190,46 @@ class DirectedGraph:
 
                 for i in range(len(self.adj_matrix[v]) -1, -1, -1):
                     if self.adj_matrix[v][i] !=0:
-                        # temp.append(i)
                         stack.appendleft(i)
-                #         temp.append(i)
-                # temp.sort(reverse=True)
-                # for i in temp:
-                #     stack.appendleft(i)
 
-
-            self.rec_dfs(v_start, v_end, visited_vertices, stack, temp)
+            self.rec_dfs(v_start, v_end, visited_vertices, stack)
 
     #
     def bfs(self, v_start, v_end=None) -> []:
         """
         TODO: Write this implementation
         """
-        pass
+        visited_vertices = []
+        queue = deque()
+        queue.append(v_start)
+
+        g = self.get_vertices()
+        if v_start not in g:
+            return []
+
+        self.rec_bfs(v_start, v_end, visited_vertices, queue)
+        return visited_vertices
+
+    def rec_bfs(self, v_start, v_end, visited_vertices, queue):
+
+        if len(queue) == 0:
+            return
+
+        if len(queue) != 0:
+            v = queue.pop()
+
+            if v == v_end:
+                visited_vertices.append(v)
+                return
+
+            if v not in visited_vertices:
+                visited_vertices.append(v)
+
+                for i in range(len(self.adj_matrix[v])):
+                    if self.adj_matrix[v][i] != 0:
+                        queue.appendleft(i)
+
+            self.rec_bfs(v_start, v_end, visited_vertices, queue)
 
     def has_cycle(self):
         """

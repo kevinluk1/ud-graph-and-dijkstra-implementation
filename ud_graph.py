@@ -212,18 +212,15 @@ class UndirectedGraph:
         return(visited_vertices)
 
 
-
     def rec_bfs(self, v_start, v_end, visited_vertices, queue):
         if len(queue) == 0:
             return
-
 
         if len(queue) != 0:
             v = queue.popleft()
             if v == v_end:
                 visited_vertices.append(v)
                 return
-
 
             if v not in visited_vertices:
                 visited_vertices.append(v)
