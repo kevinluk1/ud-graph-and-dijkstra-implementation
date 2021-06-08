@@ -61,7 +61,7 @@ class DirectedGraph:
         return self.v_count
 
     def add_edge(self, src: int, dst: int, weight=1) -> None:
-        """
+        """for src, dst, weight in edges:for src, dst, weight in edges:
         TODO: Write this implementation
         """
 
@@ -71,20 +71,19 @@ class DirectedGraph:
         if weight < 0:
             return
 
-        if src > self.v_count -1 and dst > self.v_count-1:
+        if src > self.v_count - 1 and dst > self.v_count - 1:
             return
 
-        if src > self.v_count -1 or dst > self.v_count-1:
+        if src > self.v_count - 1 or dst > self.v_count - 1:
             return
 
         self.adj_matrix[src][dst] = weight
-
 
     def remove_edge(self, src: int, dst: int) -> None:
         """
         TODO: Write this implementation
         """
-
+        print(src,dst)
         if src > self.v_count - 1 or dst > self.v_count - 1:
             return
 
@@ -94,13 +93,11 @@ class DirectedGraph:
         if src == dst:
             return
 
+
         if self.adj_matrix[src][dst] == 0:
             return
-
-
-        self.adj_matrix[src][dst] = 0
-
-        print(locals())
+        if self.adj_matrix[src][dst] != 0:
+            self.adj_matrix[src][dst] = 0
 
 
     def get_vertices(self) -> []:
@@ -156,7 +153,22 @@ class DirectedGraph:
 
 if __name__ == '__main__':
 
-
+    # g = DirectedGraph()
+    # for i in range(13):
+    #     g.add_vertex()
+    #
+    # edges = [(2, 10, 11), (7, 9, 3), (9, 6, 11), (11, 2, 15), ]
+    # for src, dst, weight in edges:
+    #     g.add_edge(src, dst, weight)
+    # print(g)
+    #
+    # list = [(9, 4), (0, 3), (4, 9), (2, 10), (0, 2), (8, 3), (8, 7), (0, 7), (7, 8), (2, 5), (5, 11), (2, 7), (7, 11),
+    #         (10, 2), (1, 10), (2, 0), (12, 8), (1, 5), (0, 10), (0, 12), (8, 4), (2, 2)]
+    # for src, dst, in list:
+    #     g.remove_edge(src, dst)
+    # print(g)
+    # print("AAAAAAAA")
+    # print(g)
 
     print("\nPDF - method add_vertex() / add_edge example 1")
     print("----------------------------------------------")
@@ -212,7 +224,7 @@ if __name__ == '__main__':
     # for src, dst in edges_to_remove:
     #     g.remove_edge(src, dst)
     #     print(g.get_edges(), g.has_cycle(), sep='\n')
-    #
+    # #
     # edges_to_add = [(4, 3), (2, 3), (1, 3), (4, 0)]
     # for src, dst in edges_to_add:
     #     g.add_edge(src, dst)
