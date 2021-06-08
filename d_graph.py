@@ -81,10 +81,11 @@ class DirectedGraph:
         """
         TODO: Write this implementation
         """
-        print("V COUNT ")
-        print(self.v_count)
 
         if src > self.v_count - 1 or dst > self.v_count - 1:
+            return
+
+        if src > self.v_count - 1 and dst > self.v_count - 1:
             return
 
         if src == dst:
