@@ -122,14 +122,12 @@ class DirectedGraph:
         return list
 
     def rec_is_valid_path(self, path, index, next, counter1, counter2):
-        if counter2 == len(path):
-            return True
 
         if self.adj_matrix[index][next] != 0:
             counter1 += 1
             counter2 += 1
 
-            if counter2 == len(path):
+            if counter2 == len(path):  # base case here
                 return True
 
             index = path[counter1]
@@ -154,8 +152,6 @@ class DirectedGraph:
         next = path[1]
 
         return self.rec_is_valid_path(path, index, next, 0, 1)
-
-
 
     def dfs(self, v_start, v_end=None) -> []:
         """
