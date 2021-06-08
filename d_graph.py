@@ -121,11 +121,41 @@ class DirectedGraph:
                     list.append(output)
         return list
 
+    def rec_is_valid_path(self, path, index, next, counter1, counter2):
+        if counter2 == len(path):
+            return True
+
+        if self.adj_matrix[index][next] != 0:
+            counter1 += 1
+            counter2 += 1
+
+            if counter2 == len(path):
+                return True
+
+            index = path[counter1]
+            next = path[counter2]
+            return self.rec_is_valid_path(path, index, next, counter1, counter2)
+
+        else:
+            return False
+
     def is_valid_path(self, path: []) -> bool:
         """
         TODO: Write this implementation
         """
-        pass
+
+        if len(path) == 0:
+            return True
+
+        if len(path) == 1:
+            return True
+
+        index = path[0]
+        next = path[1]
+
+        return self.rec_is_valid_path(path, index, next, 0, 1)
+
+
 
     def dfs(self, v_start, v_end=None) -> []:
         """
@@ -195,15 +225,15 @@ if __name__ == '__main__':
     print(g.get_edges(), g.get_vertices(), sep='\n')
     #
 
-    # print("\nPDF - method is_valid_path() example 1")
-    # print("--------------------------------------")
-    # edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
-    #          (3, 1, 5), (2, 1, 23), (3, 2, 7)]
-    # g = DirectedGraph(edges)
-    # test_cases = [[0, 1, 4, 3], [1, 3, 2, 1], [0, 4], [4, 0], [], [2]]
-    # for path in test_cases:
-    #     print(path, g.is_valid_path(path))
-    #
+    print("\nPDF - method is_valid_path() example 1")
+    print("--------------------------------------")
+    edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
+             (3, 1, 5), (2, 1, 23), (3, 2, 7)]
+    g = DirectedGraph(edges)
+    test_cases = [[0, 1, 4, 3], [1, 3, 2, 1], [0, 4], [4, 0], [], [2]]
+    for path in test_cases:
+        print(path, g.is_valid_path(path))
+
     #
     # print("\nPDF - method dfs() and bfs() example 1")
     # print("--------------------------------------")
