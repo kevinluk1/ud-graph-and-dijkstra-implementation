@@ -209,8 +209,6 @@ class UndirectedGraph:
             return []
 
         self.rec_dfs(v_start, v_end, visited_vertices, stack)
-        # print("AAAAA#@#@")
-        # print(self.get_vertices())
         return(visited_vertices)
 
 
