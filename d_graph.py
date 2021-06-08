@@ -196,12 +196,14 @@ class DirectedGraph:
                 visited_vertices.append(v)
 
 
-                for i in range(len(self.adj_matrix[v])):
+                for i in range(len(self.adj_matrix[v]) -1, -1, -1):
                     if self.adj_matrix[v][i] !=0:
-                        temp.append(i)
-                        temp.sort(reverse=True)
-                        for i in temp:
-                            stack.appendleft(i)
+                        # temp.append(i)
+                        stack.appendleft(i)
+                #         temp.append(i)
+                # temp.sort(reverse=True)
+                # for i in temp:
+                #     stack.appendleft(i)
 
 
             self.rec_dfs(v_start, v_end, visited_vertices, stack, temp)
