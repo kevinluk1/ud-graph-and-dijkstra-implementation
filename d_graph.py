@@ -84,7 +84,7 @@ class DirectedGraph:
         if src == dst:
             return
 
-        if src > self.v_count - 1 or dst > self.v_count - 1:
+        if src > self.v_count or dst > self.v_count:
             return
 
         self.adj_matrix[src][dst] = 0
