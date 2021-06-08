@@ -223,7 +223,7 @@ class DirectedGraph:
             if v not in visited_vertices:
                 visited_vertices.append(v)
 
-                for i in range(len(self.adj_matrix[v]) - 1, -1, -1):  # append smaller to larger numbers
+                for i in range(len(self.adj_matrix[v])):  # append smaller to larger numbers
                     if self.adj_matrix[v][i] != 0:
                         queue.appendleft(i)  # append left + pop right = FIFO
 
