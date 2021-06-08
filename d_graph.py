@@ -188,9 +188,9 @@ class DirectedGraph:
                 visited_vertices.append(v)
 
 
-                for i in range(len(self.adj_matrix[v]) -1, -1, -1):
+                for i in range(len(self.adj_matrix[v]) -1, -1, -1):  # append larger to smaller numbers
                     if self.adj_matrix[v][i] !=0:
-                        stack.appendleft(i)
+                        stack.appendleft(i)  # append left then pop left = LIFO
 
             self.rec_dfs(v_start, v_end, visited_vertices, stack)
 
@@ -225,9 +225,9 @@ class DirectedGraph:
             if v not in visited_vertices:
                 visited_vertices.append(v)
 
-                for i in range(len(self.adj_matrix[v])):
+                for i in range(len(self.adj_matrix[v])):  # append smaller to larger numbers
                     if self.adj_matrix[v][i] != 0:
-                        queue.appendleft(i)
+                        queue.appendleft(i)  # append left + pop right = FIFO
 
             self.rec_bfs(v_start, v_end, visited_vertices, queue)
 
