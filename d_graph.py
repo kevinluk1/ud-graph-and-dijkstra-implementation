@@ -84,10 +84,11 @@ class DirectedGraph:
         TODO: Write this implementation
         """
         print(src, dst)
-        if src > self.v_count - 1 or dst > self.v_count - 1:
+
+        if src < 0 or dst < 0:
             return
 
-        if src > self.v_count - 1 and dst > self.v_count - 1:
+        if src > self.v_count - 1 or dst > self.v_count - 1:
             return
 
         if src == dst:
@@ -111,7 +112,6 @@ class DirectedGraph:
         """
         TODO: Write this implementation
         """
-
         list = []
         for row in range(len(self.adj_matrix)):
             for col in range(len(self.adj_matrix[row])):
