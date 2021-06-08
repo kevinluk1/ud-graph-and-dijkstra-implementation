@@ -255,30 +255,11 @@ class UndirectedGraph:
 
     def count_connected_components(self):
         """
-        Return number of connected componets in the graph
+        Return number of connected components in the graph
         """
         gv = self.get_vertices()
         counter = 0
-        return self.rec_count_connected_components(gv, 0)
-
-
-        # g = self.get_vertices()
-        # h = self.dfs(g[0])
-        # print(g)
-        # print(h)
-        #
-        # unconnected_components = 0
-        # counter = 0
-        # for i in range(len(h)):
-        #     if h[i] in g:
-        #         g.remove(h[i])
-        #         counter +=1
-        # if len(g) != 0:
-        #     h = self.dfs(g[0])
-        #
-        # print(g)
-        # print(counter)
-
+        return self.rec_count_connected_components(gv, counter)
 
 
     def rec_count_connected_components(self, gv, counter):
@@ -300,9 +281,9 @@ class UndirectedGraph:
         """
         Return True if graph contains a cycle, False otherwise
         """
-       
 
-   
+        pass
+
 
 
 if __name__ == '__main__':
