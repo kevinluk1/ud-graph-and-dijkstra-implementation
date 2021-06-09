@@ -276,11 +276,7 @@ class DirectedGraph:
 
             return self.rec_dijkstra(src, visited_vertices, priority_queue)
 
-            #
-            # if v not in visited_vertices:
-            #     visited_vertices[v] = self.adj_matrix[v][v]
-            #
-            #
+
 
 
 if __name__ == '__main__':
