@@ -56,7 +56,6 @@ class UndirectedGraph:
         if u not in self.adj_list[v]:
             self.adj_list[v].append(u)
 
-
     def add_edge(self, u: str, v: str) -> None:
         """
         Add edge to the graph
@@ -83,9 +82,6 @@ class UndirectedGraph:
             if u not in self.adj_list[v]:
                 self.adj_list[v].append(u)
 
-
-        
-
     def remove_edge(self, v: str, u: str) -> None:
         """
         Remove edge from the graph
@@ -105,7 +101,6 @@ class UndirectedGraph:
                 self.adj_list[u].remove(v)
             if u in self.adj_list[v]:
                 self.adj_list[v].remove(u)
-        
 
     def remove_vertex(self, v: str) -> None:
         """
@@ -127,34 +122,28 @@ class UndirectedGraph:
         list_of_vertices = list(vertices)
         return list_of_vertices
 
-
-
     def get_edges(self) -> []:
         """
         Return list of edges in the graph (any order)
         """
         list = []
-        for k,v in self.adj_list.items():
+        for k, v in self.adj_list.items():
             for z in v:
-                whatever = (k,z)
-                whatever_inv = (z,k)
+                whatever = (k, z)
+                whatever_inv = (z, k)
                 if whatever_inv not in list:
                     list.append(whatever)
         return list
 
-
-
     def is_valid_path_helper(self, path, index):
-        if index == len(path)-1:
+        if index == len(path) - 1:
             return True
 
-        if path[index+1] in self.adj_list[path[index]]:
-            return self.is_valid_path_helper(path, index+1)
+        if path[index + 1] in self.adj_list[path[index]]:
+            return self.is_valid_path_helper(path, index + 1)
 
-        if path[index+1] not in self.adj_list[path[index]]:
+        if path[index + 1] not in self.adj_list[path[index]]:
             return False
-
-
 
     def is_valid_path(self, path: []) -> bool:
         """
@@ -171,19 +160,16 @@ class UndirectedGraph:
                 return True
         return self.is_valid_path_helper(path, 0)
 
-
     def rec_dfs(self, v_start, v_end, visited_vertices, stack):
 
         if len(stack) == 0:
             return
-
 
         if len(stack) != 0:
             v = stack.popleft()
             if v == v_end:
                 visited_vertices.append(v)
                 return
-
 
             if v not in visited_vertices:
                 visited_vertices.append(v)
@@ -209,8 +195,7 @@ class UndirectedGraph:
             return []
 
         self.rec_dfs(v_start, v_end, visited_vertices, stack)
-        return(visited_vertices)
-
+        return (visited_vertices)
 
     def rec_bfs(self, v_start, v_end, visited_vertices, queue):
         if len(queue) == 0:
@@ -256,7 +241,6 @@ class UndirectedGraph:
         counter = 0
         return self.rec_count_connected_components(gv, counter)
 
-
     def rec_count_connected_components(self, gv, counter):
         if len(gv) == 0:
             return counter
@@ -266,9 +250,8 @@ class UndirectedGraph:
             for i in dfs:
                 if i in gv:
                     gv.remove(i)
-            counter+=1
+            counter += 1
             return self.rec_count_connected_components(gv, counter)
-
 
     def dfs_mod_cycle(self, v_start):
         visited_vertices = []
@@ -278,7 +261,6 @@ class UndirectedGraph:
         if v_start not in self.adj_list.keys():
             return []
         return self.rec_dfs_mod_cycle(v_start, visited_vertices, stack, parent)
-
 
     def rec_dfs_mod_cycle(self, v_start, visited_vertices, stack, parent):
         if len(stack) == 0:
@@ -295,9 +277,6 @@ class UndirectedGraph:
                 if parent in stack:
                     return True
             return self.rec_dfs_mod_cycle(v_start, visited_vertices, stack, parent)
-        # if v_start not in self.adj_list.keys():
-        #     return []
-
 
     def has_cycle(self):
         """
@@ -308,16 +287,17 @@ class UndirectedGraph:
         v_start = path[index]
         return self.rec_has_cycle(v_start, index, path)
 
-
-    def rec_has_cycle(self, v_start, index, path):  # RECURSIVE FUNCTION WITHIN ANOTHER RECURSIVE FUNCTION HAHAHAHAHHAHAHAHAHAH
+    def rec_has_cycle(self, v_start, index,
+                      path):  # RECURSIVE FUNCTION WITHIN ANOTHER RECURSIVE FUNCTION HAHAHAHAHHAHAHAHAHAH
         if self.dfs_mod_cycle(v_start) is True:
             return True
         if self.dfs_mod_cycle(v_start) is False:
-            index +=1
+            index += 1
             if index > len(path) - 1:
                 return False
             v_start = path[index]
             return self.rec_has_cycle(v_start, index, path)
+
 
 if __name__ == '__main__':
 
@@ -390,7 +370,6 @@ if __name__ == '__main__':
     # for i in range(1, len(test_cases)):
     #     v1, v2 = test_cases[i], test_cases[-1 - i]
     #     print(f'{v1}-{v2} DFS:{g.dfs(v1, v2)} BFS:{g.bfs(v1, v2)}')
-
 
     #
     # print("\nPDF - method count_connected_components() example 1")
