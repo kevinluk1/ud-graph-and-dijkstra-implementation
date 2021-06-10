@@ -288,7 +288,7 @@ class UndirectedGraph:
         return self.rec_has_cycle(v_start, index, path)
 
     def rec_has_cycle(self, v_start, index,
-                      path):  # RECURSIVE FUNCTION WITHIN ANOTHER RECURSIVE FUNCTION HAHAHAHAHHAHAHAHAHAH
+                      path):  # recursive function with recursive wrapper
         if self.dfs_mod_cycle(v_start) is True:
             return True
         if self.dfs_mod_cycle(v_start) is False:
