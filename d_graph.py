@@ -1,7 +1,7 @@
 # Course: CS261 - Data Structures
-# Author:
-# Assignment:
-# Description:
+# Author: Kevin Luk
+# Assignment: 6
+# Description: Directed Graph
 from collections import deque
 import heapq
 
@@ -55,7 +55,7 @@ class DirectedGraph:
 
     def add_vertex(self) -> int:
         """
-        TODO: Write this implementation
+        Add vertex
         """
         self.v_count += 1
         matrix = [[0 for i in range(self.v_count)] for g in range(self.v_count)]
@@ -65,7 +65,7 @@ class DirectedGraph:
 
     def add_edge(self, src: int, dst: int, weight=1) -> None:
         """for src, dst, weight in edges:for src, dst, weight in edges:
-        TODO: Write this implementation
+        Add edge
         """
 
         if src == dst:
@@ -84,7 +84,7 @@ class DirectedGraph:
 
     def remove_edge(self, src: int, dst: int) -> None:
         """
-        TODO: Write this implementation
+        Remove edge
         """
 
 
@@ -104,7 +104,7 @@ class DirectedGraph:
 
     def get_vertices(self) -> []:
         """
-        TODO: Write this implementation
+        Get all vertices
         """
         list = []
         for i in range(self.v_count):
@@ -113,7 +113,7 @@ class DirectedGraph:
 
     def get_edges(self) -> []:
         """
-        TODO: Write this implementation
+        Get all edges
         """
         list = []
         for row in range(len(self.adj_matrix)):
@@ -142,7 +142,7 @@ class DirectedGraph:
 
     def is_valid_path(self, path: []) -> bool:
         """
-        TODO: Write this implementation
+        Check if valid path
         """
 
         if len(path) == 0:
@@ -158,7 +158,7 @@ class DirectedGraph:
 
     def dfs(self, v_start, v_end=None) -> []:
         """
-        TODO: Write this implementation
+        DFS search
         """
         visited_vertices = []
         stack = deque()
@@ -195,7 +195,7 @@ class DirectedGraph:
     #
     def bfs(self, v_start, v_end=None) -> []:
         """
-        TODO: Write this implementation
+       BFS search
         """
         visited_vertices = []
         queue = deque()
@@ -270,7 +270,7 @@ class DirectedGraph:
 
     def has_cycle(self):
         """
-        TODO: Write this implementation
+        Check if cyclic
         """
 
         path = self.get_vertices()
@@ -292,7 +292,7 @@ class DirectedGraph:
 
     def dijkstra(self, src: int) -> []:
         """
-        TODO: Write this implementation
+        dijkstra check
         """
         visited_vertices = dict()
         priority_queue = []
