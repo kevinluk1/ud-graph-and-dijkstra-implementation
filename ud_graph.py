@@ -1,7 +1,3 @@
-# Course: 261
-# Author:  Kevin Luk
-# Assignment:  6
-# Description: ud GRAPH
 from collections import deque
 
 
@@ -126,14 +122,14 @@ class UndirectedGraph:
         """
         Return list of edges in the graph (any order)
         """
-        list = []
+        edge_list = []
         for k, v in self.adj_list.items():
             for z in v:
-                whatever = (k, z)
-                whatever_inv = (z, k)
-                if whatever_inv not in list:
-                    list.append(whatever)
-        return list
+                edges = (k, z)
+                edges_inv = (z, k)
+                if edges_inv not in edge_list:
+                    edge_list.append(edges)
+        return edge_list
 
     def is_valid_path_helper(self, path, index):
         if index == len(path) - 1:

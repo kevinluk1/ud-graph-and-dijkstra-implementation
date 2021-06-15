@@ -1,7 +1,3 @@
-# Course: CS261 - Data Structures
-# Author: Kevin Luk
-# Assignment: 6
-# Description: Directed Graph
 from collections import deque
 import heapq
 
@@ -67,7 +63,6 @@ class DirectedGraph:
         """for src, dst, weight in edges:for src, dst, weight in edges:
         Add edge
         """
-
         if src == dst:
             return
 
@@ -86,8 +81,6 @@ class DirectedGraph:
         """
         Remove edge
         """
-
-
         if src < 0 or dst < 0:
             return
 
@@ -106,23 +99,23 @@ class DirectedGraph:
         """
         Get all vertices
         """
-        list = []
+        vertices_list = []
         for i in range(self.v_count):
-            list.append(i)
-        return list
+            vertices_list.append(i)
+        return vertices_list
 
     def get_edges(self) -> []:
         """
         Get all edges
         """
-        list = []
+        edge_list = []
         for row in range(len(self.adj_matrix)):
             for col in range(len(self.adj_matrix[row])):
                 if self.adj_matrix[row][col] != 0:
                     weight = self.adj_matrix[row][col]
                     output = (row, col, weight)
-                    list.append(output)
-        return list
+                    edge_list.append(output)
+        return edge_list
 
     def rec_is_valid_path(self, path, index, next, counter1, counter2):
 
@@ -144,7 +137,6 @@ class DirectedGraph:
         """
         Check if valid path
         """
-
         if len(path) == 0:
             return True
 
@@ -192,10 +184,9 @@ class DirectedGraph:
 
             self.rec_dfs(v_start, v_end, visited_vertices, stack)
 
-    #
     def bfs(self, v_start, v_end=None) -> []:
         """
-       BFS search
+        BFS search
         """
         visited_vertices = []
         queue = deque()
@@ -262,9 +253,6 @@ class DirectedGraph:
                         counter += 1
                         if counter == len(self.adj_matrix):
                             return False
-
-
-
 
             return self.rec_dfs_mod_cycle(v_start, visited_vertices, stack, parent)
 
@@ -419,22 +407,22 @@ if __name__ == '__main__':
 
 
 
-    print("\nPDF - method has_cycle() example 1")
-    print("----------------------------------")
-    edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
-             (3, 1, 5), (2, 1, 23), (3, 2, 7)]
-    g = DirectedGraph(edges)
-
-    edges_to_remove = [(3, 1), (4, 0), (3, 2)]
-    for src, dst in edges_to_remove:
-        g.remove_edge(src, dst)
-        print(g.get_edges(), g.has_cycle(), sep='\n')
-
-    edges_to_add = [(4, 3), (2, 3), (1, 3), (4, 0)]
-    for src, dst in edges_to_add:
-        g.add_edge(src, dst)
-        print(g.get_edges(), g.has_cycle(), sep='\n')
-    print('\n', g)
+    # print("\nPDF - method has_cycle() example 1")
+    # print("----------------------------------")
+    # edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
+    #          (3, 1, 5), (2, 1, 23), (3, 2, 7)]
+    # g = DirectedGraph(edges)
+    #
+    # edges_to_remove = [(3, 1), (4, 0), (3, 2)]
+    # for src, dst in edges_to_remove:
+    #     g.remove_edge(src, dst)
+    #     print(g.get_edges(), g.has_cycle(), sep='\n')
+    #
+    # edges_to_add = [(4, 3), (2, 3), (1, 3), (4, 0)]
+    # for src, dst in edges_to_add:
+    #     g.add_edge(src, dst)
+    #     print(g.get_edges(), g.has_cycle(), sep='\n')
+    # print('\n', g)
 
 
     # print("\nPDF - dijkstra() example 1")
